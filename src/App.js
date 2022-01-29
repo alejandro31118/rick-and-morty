@@ -8,7 +8,6 @@ import CharInfo from './components/CharInfo';
 
 const App = () => {
   const [items, setItems] = useState([])
-  //const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -16,7 +15,6 @@ const App = () => {
 
       console.log(result.data.results)
       setItems(result.data.results)
-      //setIsLoading(false)
     }
     fetchItems()
   }, [])

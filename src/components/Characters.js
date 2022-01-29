@@ -13,7 +13,15 @@ const Characters = ({items}) => {
           <div className="c-card__body">
             <p className="c-card__name mb-1">{item.name}</p>
             <p className="c-card__specie">{item.species}</p>
-            <p className="c-card__status">{item.status}</p>
+            {(() => {
+              if (item.status == "Alive") {
+                return (<p className="c-card__status">{item.status}</p>)
+              } else if (item.status == "Dead") {
+                return (<p className="c-card__status isDead">{item.status}</p>)
+              } else if (item.status == "unknown") {
+                return (<p className="c-card__status isUnknown">{item.status}</p>)
+              }
+            })()}
             <p className="c-card__origin">{item.origin.name}</p>
           </div>
         </div>
