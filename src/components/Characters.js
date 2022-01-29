@@ -6,7 +6,7 @@ const Characters = ({items}) => {
     <div className='row card-container'>
       {items.map(item => (
         <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-        <div className="c-card" onClick={CharInfo}>
+        <div className="c-card" key={item.id} onClick={CharInfo}>
           <div className="c-card__head">
             <img src={item.image} />
           </div>
