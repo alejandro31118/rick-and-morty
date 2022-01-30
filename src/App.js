@@ -9,11 +9,15 @@ import CharInfo from './components/CharInfo';
 const App = () => {
   const [items, setItems] = useState([])
   const [query, setQuery] = useState('')
-  var page = 1
+  const [page, setPage] = useState(1)
 
   /*const loadMore = () => {
-    page++
+    https://stackoverflow.com/questions/69802728/fetch-rick-and-morty-api
   }*/
+  const loadMore = (event) => {
+    event.preventDefault()
+    setPage(page + 1)
+  }
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -23,7 +27,7 @@ const App = () => {
       setItems(result.data.results)
     }
     fetchItems()
-  }, [query])
+  }, [query, page])
 
   return (
     <main className='c-main'>
@@ -33,7 +37,7 @@ const App = () => {
         <Characters items={items} />
 
         <div class="d-grid gap-2">
-          <button class="btn btn-purple mb-5" onclick={page = page++} type="button">Load more</button>
+          <button class="btn btn-purple mb-5" onClick={(event) => loadMore(event)} type="button">Load more</button>
         </div>
 
       </div>

@@ -1,4 +1,3 @@
-import { getSuggestedQuery } from '@testing-library/react';
 import React, { useState } from 'react';
 import '../main.css';
 
