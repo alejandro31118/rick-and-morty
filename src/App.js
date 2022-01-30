@@ -11,9 +11,6 @@ const App = () => {
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
 
-  /*const loadMore = () => {
-    https://stackoverflow.com/questions/69802728/fetch-rick-and-morty-api
-  }*/
   const loadMore = (event) => {
     event.preventDefault()
     setPage(page + 1)
@@ -24,7 +21,11 @@ const App = () => {
       const result = await axios(`https://rickandmortyapi.com/api/character?page=${page}&name=${query}`)
 
       console.log(result.data.results)
-      setItems(result.data.results)
+      if (query == '') {
+        setItems(old => [...old, ...result.data.results])
+      } else {
+        setItems(result.data.results)
+      }
     }
     fetchItems()
   }, [query, page])
@@ -36,8 +37,8 @@ const App = () => {
         <Search getQuery={(q) => setQuery(q)} />
         <Characters items={items} />
 
-        <div class="d-grid gap-2">
-          <button class="btn btn-purple mb-5" onClick={(event) => loadMore(event)} type="button">Load more</button>
+        <div className="d-grid gap-2">
+          <button className="btn btn-purple mb-5" onClick={(event) => loadMore(event)} type="button">Load more</button>
         </div>
 
       </div>
