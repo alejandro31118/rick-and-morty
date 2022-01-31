@@ -1,4 +1,4 @@
-## Intall
+## Install
 In order to download and run this project you shoud run this commands:
 
 ```sh
