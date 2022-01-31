@@ -11,9 +11,23 @@ const App = () => {
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
 
-  const loadMore = (event) => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 600,
+      behavior: 'smooth'
+    });
+  }
+
+  const nextPage = (event) => {
     event.preventDefault()
     setPage(page + 1)
+    scrollToTop()
+  }
+
+  const prevPage = (event) => {
+    event.preventDefault()
+    setPage(page - 1)
+    scrollToTop()
   }
 
   useEffect(() => {
@@ -21,11 +35,7 @@ const App = () => {
       const result = await axios(`https://rickandmortyapi.com/api/character?page=${page}&name=${query}`)
 
       console.log(result.data.results)
-      if (query == '') {
-        setItems(old => [...old, ...result.data.results])
-      } else {
-        setItems(result.data.results)
-      }
+      setItems(result.data.results)
     }
     fetchItems()
   }, [query, page])
@@ -37,10 +47,17 @@ const App = () => {
         <Search getQuery={(q) => setQuery(q)} />
         <Characters items={items} />
 
-        <div className="d-grid gap-2">
-          <button className="btn btn-purple mb-5" onClick={(event) => loadMore(event)} type="button">Load more</button>
+        <div className='row d-grid gap-2 justify-content-center'>
+          <ul className="pagination">
+            <li className="page-item btn btn-purple mb-5 col-5">
+              <a onClick={(event) => prevPage(event)}>Previous</a>
+            </li>
+            <li className="page-item btn btn-purple mb-5 mx-2"><a>{page}</a></li>
+            <li className="page-item btn btn-purple mb-5 col-5">
+              <a onClick={(event) => nextPage(event)}>Next</a>
+            </li>
+          </ul>
         </div>
-
       </div>
     </main>
   );
