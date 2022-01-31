@@ -1,9 +1,16 @@
 ## Install
 In order to download and run this project you shoud run this commands:
 
+Linux:
 ```sh
 git clone https://github.com/alejandro31118/rick-and-morty
 cd rick-and-morty
+npm install
+```
+Windows:
+```sh
+git clone https://github.com/alejandro31118/rick-and-morty
+cd .\rick-and-morty\
 npm install
 ```
 
