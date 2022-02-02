@@ -1,4 +1,5 @@
 ## Install
+Require: NodeJS version -> 16.13
 In order to download and run this project you shoud run this commands:
 
 Linux:
