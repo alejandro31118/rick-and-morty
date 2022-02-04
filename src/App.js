@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Characters from './components/Characters';
 import Search from './components/Search';
-import CharInfo from './components/CharInfo';
 
 const App = () => {
   const [items, setItems] = useState([])
